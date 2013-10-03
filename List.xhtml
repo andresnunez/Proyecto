@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:head>
+        <title>..:Roles:..</title>
+        <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/imagenes/favicon.png"/>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+        <link href="../menu_assets/styles.css" rel="stylesheet" type="text/css"></link>       
+    </h:head>
+    
+    <center>
+        
+         <div id='cssmenu'>
+<ul> 
+<li class='has-sub '><a href='#'><span>Empleados</span></a>
+      <ul>
+          <li class='has-sub '><span><h:link outcome="/tblEmpleados/List">Gestionar Empleados >></h:link></span>
+            </li>
+          <li class='has-sub '><span><h:link outcome="/tblEmpleados/Create">Registrar</h:link></span>
+            </li>
+      </ul>
+</li>
+
+
+
+<li class='has-sub '><a href='#'><span>Productos</span></a>
+    <ul>
+        <li class='has-sub '><a href='#'><span><h:link outcome="/tblProductos/List">Gestionar productos >></h:link></span></a>
+            </li>
+            <li class='has-sub '><a href='#'><span><h:link outcome="/tblProductos/Create">Registrar</h:link></span></a>
+            </li>
+      </ul>
+</li>
+
+
+
+<li class='has-sub '><a href='#'><span>Proveedores</span></a>
+    <ul>
+        <li class='has-sub '><a href='#'><span><h:link outcome="/tblProveedores/List">Gestionar Proveedores >></h:link></span></a>
+            </li>
+        <li class='has-sub '><a href='#'><span><h:link outcome="/tblProveedores/Create">Registrar</h:link></span></a>
+            </li>
+      </ul>
+</li>
+
+
+
+
+<li class='has-sub '><a href='#'><span>Usuarios</span></a>
+    <ul>
+        <li class='has-sub '><a href='#'><span><h:link outcome="/tblUsuarios/List">Gestionar Usuarios >></h:link></span></a>
+            </li>
+        <li class='has-sub '><a href='#'><span><h:link outcome="/tblUsuarios/Create">Registrar</h:link></span></a>
+            </li>
+      </ul>
+</li>
+    
+<li class='has-sub '><a href='#'><span>Configuración</span></a>
+        <ul>
+            <li class='has-sub '><a href='#'><span>Sistema</span></a></li>>>>>AA
+        </ul>
+</li>
+<li class='has-sub '><a href='#'><span>Ayuda</span></a>
+    <ul>
+        <li class='has-sub '><a href='#' onclick="javascript:window.close();"><span>Salir  >></span></a>
+        </li>
+      </ul>
+</li>
+</ul>
+</div>
+        
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTblRolesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTblRolesEmpty}" rendered="#{tblRolesController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{tblRolesController.items.rowCount > 0}">
+                    <h:outputText value="#{tblRolesController.pagination.pageFirstItem + 1}..#{tblRolesController.pagination.pageLastItem + 1}/#{tblRolesController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{tblRolesController.previous}" value="#{bundle.Previous} #{tblRolesController.pagination.pageSize}" rendered="#{tblRolesController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{tblRolesController.next}" value="#{bundle.Next} #{tblRolesController.pagination.pageSize}" rendered="#{tblRolesController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{tblRolesController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblRolesTitle_rolID}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rolID}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTblRolesTitle_descripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{tblRolesController.prepareView}" value="#{bundle.ListTblRolesViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tblRolesController.prepareEdit}" value="#{bundle.ListTblRolesEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tblRolesController.destroy}" value="#{bundle.ListTblRolesDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{tblRolesController.prepareCreate}" value="#{bundle.ListTblRolesCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTblRolesIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+    </center>
+</html>

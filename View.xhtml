@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>..:Ver Rol:..</title>
+        <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/imagenes/favicon.png"/>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+        <link href="../menu_assets/styles.css" rel="stylesheet" type="text/css"></link>       
+    </h:head>
+    <center>
+        
+        <div id='cssmenu'>
+<ul> 
+<li class='has-sub '><a href='#'><span>Empleados</span></a>
+      <ul>
+          <li class='has-sub '><span><h:link outcome="/tblEmpleados/List">Gestionar Empleados >></h:link></span>
+            </li>
+          <li class='has-sub '><span><h:link outcome="/tblEmpleados/Create">Registrar</h:link></span>
+            </li>
+      </ul>
+</li>
+
+
+
+<li class='has-sub '><a href='#'><span>Productos</span></a>
+    <ul>
+        <li class='has-sub '><a href='#'><span><h:link outcome="/tblProductos/List">Gestionar productos >></h:link></span></a>
+            </li>
+            <li class='has-sub '><a href='#'><span><h:link outcome="/tblProductos/Create">Registrar</h:link></span></a>
+            </li>
+      </ul>
+</li>
+
+
+
+<li class='has-sub '><a href='#'><span>Proveedores</span></a>
+    <ul>
+        <li class='has-sub '><a href='#'><span><h:link outcome="/tblProveedores/List">Gestionar Proveedores >></h:link></span></a>
+            </li>
+        <li class='has-sub '><a href='#'><span><h:link outcome="/tblProveedores/Create">Registrar</h:link></span></a>
+            </li>
+      </ul>
+</li>
+
+
+
+
+<li class='has-sub '><a href='#'><span>Usuarios</span></a>
+    <ul>
+        <li class='has-sub '><a href='#'><span><h:link outcome="/tblUsuarios/List">Gestionar Usuarios >></h:link></span></a>
+            </li>
+        <li class='has-sub '><a href='#'><span><h:link outcome="/tblUsuarios/Create">Registrar</h:link></span></a>
+            </li>
+      </ul>
+</li>
+    
+<li class='has-sub '><a href='#'><span>Configuración</span></a>
+        <ul>
+            <li class='has-sub '><a href='#'><span>Sistema</span></a></li>>>>>AA
+        </ul>
+</li>
+<li class='has-sub '><a href='#'><span>Ayuda</span></a>
+    <ul>
+        <li class='has-sub '><a href='#' onclick="javascript:window.close();"><span>Salir  >></span></a>
+        </li>
+      </ul>
+</li>
+</ul>
+</div>
+        
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTblRolesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTblRolesLabel_rolID}"/>
+                    <h:outputText value="#{tblRolesController.selected.rolID}" title="#{bundle.ViewTblRolesTitle_rolID}"/>
+                    <h:outputText value="#{bundle.ViewTblRolesLabel_descripcion}"/>
+                    <h:outputText value="#{tblRolesController.selected.descripcion}" title="#{bundle.ViewTblRolesTitle_descripcion}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tblRolesController.destroyAndView}" value="#{bundle.ViewTblRolesDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTblRolesEditLink}"/>
+                <br />
+                <h:commandLink action="#{tblRolesController.prepareCreate}" value="#{bundle.ViewTblRolesCreateLink}" />
+                <br />
+                <h:commandLink action="#{tblRolesController.prepareList}" value="#{bundle.ViewTblRolesShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTblRolesIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+    </center>
+</html>
